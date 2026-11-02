@@ -1,0 +1,23 @@
+@model CartDto
+<div class="summary">
+    <h4>Корзина</h4>
+    @if (!Model.Lines.Any())
+    {
+        <p>Пусто</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var l in Model.Lines)
+            {
+                <li>
+                    <span>@l.Name × @l.Quantity</span>
+                    <strong>@l.LineTotal.ToString("C")</strong>
+                    <button class="remove-item" data-id="@l.Id" title="Удалить">✕</button>
+                </li>
+            }
+        </ul>
+        <p class="total">Итого: <strong>@Model.Total.ToString("C")</strong></p>
+        <a asp-controller="Cart" asp-action="Index" class="btn small">Оформить</a>
+    }
+</div>

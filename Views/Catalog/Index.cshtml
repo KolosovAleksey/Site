@@ -1,0 +1,25 @@
+@model List<ProductDto>
+@{
+    ViewData["Title"] = "Каталог";
+    var cats = ViewBag.Categories as List<Category>;
+    int? currentCat = ViewBag.CategoryId as int?;
+    var search = ViewBag.Search as string ?? "";
+}
+
+<h1>Каталог</h1>
+
+<form id="filterForm" class="filters">
+    <select name="categoryId">
+        <option value="">Все категории</option>
+        @foreach (var c in cats!)
+        {
+            <option value="@c.Id" selected="@(currentCat == c.Id)">@c.Name</option>
+        }
+    </select>
+    <input name="search" placeholder="Поиск..." value="@search" />
+    <button type="submit">Найти</button>
+</form>
+
+<div id="productGrid">
+    <partial name="_ProductGrid" model="Model" />
+</div>

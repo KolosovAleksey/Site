@@ -1,0 +1,17 @@
+@model List<ProductDto>
+<div class="grid">
+    @if (!Model.Any())
+    {
+        <p>Ничего не найдено.</p>
+    }
+    @foreach (var p in Model)
+    {
+        <div class="card">
+            <img src="@p.ImageUrl" alt="@p.Name" loading="lazy" />
+            <h3>@p.Name</h3>
+            <div class="cat">@p.CategoryName</div>
+            <div class="price">@p.Price.ToString("C")</div>
+            <button class="add-to-cart" data-id="@p.Id">В корзину</button>
+        </div>
+    }
+</div>

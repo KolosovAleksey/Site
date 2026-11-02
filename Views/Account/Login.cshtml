@@ -1,0 +1,10 @@
+@{ ViewData["Title"] = "Вход"; }
+<h1>Вход</h1>
+<form asp-action="Login" method="post" class="auth-form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+    <div asp-validation-summary="All" class="errors"></div>
+    <label>Email <input name="email" type="email" required /></label>
+    <label>Пароль <input name="password" type="password" required /></label>
+    <button type="submit" class="btn">Войти</button>
+</form>
